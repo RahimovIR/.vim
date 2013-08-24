@@ -189,6 +189,10 @@ source ~/.vim/fun.vim
     " SimpylFold
     let g:SimpylFold_docstring_preview = 1
 
+    " NERDCommenter
+    let NERDRemoveExtraSpaces = 1
+    let NERDSpaceDelims = 1
+
 " }}}
 
 " Hot keys {{{
