@@ -36,6 +36,7 @@
 
 let mapleader = ","
 source ~/.vim/fun.vim
+set t_Co=256
 
 " Options {{{
 " =======
@@ -192,6 +193,14 @@ source ~/.vim/fun.vim
     " NERDCommenter
     let NERDRemoveExtraSpaces = 1
     let NERDSpaceDelims = 1
+
+    " Airline
+    let g:airline_detect_iminsert = 1
+    let g:airline_exclude_preview = 1
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_theme = 'wombat'
+
 
 " }}}
 

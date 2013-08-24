@@ -4,9 +4,6 @@
 [submodule "bundle/SimpylFold.git"]
 	path = bundle/SimpylFold.git
 	url = git://github.com/tmhedberg/SimpylFold.git
-[submodule "bundle/vim-autoclose.git"]
-	path = bundle/vim-autoclose.git
-	url = git://github.com/andrewle/vim-autoclose.git
 [submodule "bundle/tlib_vim.git"]
 	path = bundle/tlib_vim.git
 	url = git://github.com/tomtom/tlib_vim.git
@@ -28,3 +25,15 @@
 [submodule "bundle/nerdcommenter.git"]
 	path = bundle/nerdcommenter.git
 	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/vim-airline.git"]
+	path = bundle/vim-airline.git
+	url = git://github.com/bling/vim-airline
+[submodule "bundle/vim-startify.git"]
+	path = bundle/vim-startify.git
+	url = git://github.com/mhinz/vim-startify
+[submodule "bundle/vim-surround.git"]
+	path = bundle/vim-surround.git
+	url = git://github.com/tpope/vim-surround.git
+[submodule "bundle/vim-autoclose.git"]
+	path = bundle/vim-autoclose.git
+	url = git://github.com/Townk/vim-autoclose.git
