@@ -17,3 +17,9 @@
     ln -s ~/vim.git ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
 
+#### Или одним списком для удобства:
+
+    git clone https://github.com/RahimovIR/.vim.git ~/vim.git
+    cd ~/vim.git && git submodule init && git submodule update
+    ln -s ~/vim.git ~/.vim
+    ln -s ~/.vim/vimrc ~/.vimrc
