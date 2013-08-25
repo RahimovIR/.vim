@@ -201,6 +201,8 @@ set t_Co=256
     let g:airline_right_sep = ''
     let g:airline_theme = 'wombat'
 
+    " Startify
+    let g:startify_bookmarks = [ '~/.vimrc', '/var/log/syslog', '/var/log/' ]
 
 " }}}
 
