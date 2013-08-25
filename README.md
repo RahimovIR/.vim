@@ -1,4 +1,21 @@
 .vim
 ====
 
-My vim settings
+Мои vim :)
+
+Установка
+===========
+
+#. Скопировать в какую нибудь папку, например vim.git: ::
+
+    git clone git@github.com:RahimovIR/.vim.git ~/vim.git
+
+#. Перейти в папку vim.git обновить модули: ::
+
+    cd ~/vim.git && git submodule init && git submodule update
+
+#. Создать ссылки на .vim и .vimrc: ::
+
+    ln -s ~/vim.git ~/.vim
+    ln -s ~/.vim/vimrc ~/.vimrc
+
