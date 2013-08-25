@@ -6,7 +6,7 @@
 
 ####1. Скопировать в какую нибудь папку, например vim.git:
 
-    git clone git@github.com:RahimovIR/.vim.git ~/vim.git
+    git clone https://github.com/RahimovIR/.vim.git ~/vim.git
 
 ####2. Перейти в папку vim.git обновить модули:
 
