@@ -8,12 +8,14 @@
 необходимов установить версию vim 7.4.
 Ubuntu 12.04 - 13.04 идет с версий 7.3, для обновления 
 необхлдимо сделать следующее:
+
     sudo add-apt-repository ppa:nmi/vim-snapshots
     sudo apt-get update
     sudo apt-get upgrade
 
 Для работы jedi-vim (автодополнение) необходимо установить
 jedi:
+
     sudo pip install jedi
 
 ##Установка
