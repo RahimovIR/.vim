@@ -186,6 +186,7 @@ set t_Co=256
     let g:pymode_options_other = 1
     let g:pymode_run_key = 'R'
     let pymode_folding = 0
+    let g:pymode_rope = 0
 
     " SimpylFold
     let g:SimpylFold_docstring_preview = 1
