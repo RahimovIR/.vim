@@ -37,6 +37,8 @@
 let mapleader = ","
 source ~/.vim/fun.vim
 set t_Co=256
+colorscheme delek
+
 
 " Options {{{
 " =======
