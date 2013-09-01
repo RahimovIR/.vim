@@ -43,3 +43,6 @@
 [submodule "bundle/jedi-vim.git"]
 	path = bundle/jedi-vim.git
 	url = git://github.com/davidhalter/jedi-vim.git
+[submodule "bundle/minibufexpl.vim.git"]
+	path = bundle/minibufexpl.vim.git
+	url = git://github.com/fholgado/minibufexpl.vim.git
