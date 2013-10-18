@@ -1,30 +1,67 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+if !exists('s:loaded_my_vimrc') " don't reset twice on reloading
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+    set nocompatible " enable vim features
 
-Bundle 'gmarik/vundle'
-"for python
-Bundle 'davidhalter/jedi-vim'
-"colors
-Bundle 'rainux/vim-desert-warm-256'
-Bundle 'vim-scripts/candycode.vim'
-Bundle 'jonathanfilip/vim-lucius'
-"syntax
-Bundle 'hdima/python-syntax'
-""
-Bundle 'tpope/vim-surround'
+    set backupdir=$HOME/.cache/vim/backup " where to put backup file
+    set backup " make backup file and leave it around
 
-filetype plugin indent on 
+    set directory=/tmp " where to put swap file
+    let g:SESSION_DIR = $HOME.'/.cache/vim/sessions'
+
+    if has('persistent_undo')
+        set undodir=$HOME/.cache/vim/undo " where to put undo files
+        set undofile " enable persistent undo
+    endif
+
+" Create system vim dirs
+    if finddir(&backupdir) == ''
+        silent call mkdir(&backupdir, "p")
+    endif
+
+    if finddir(g:SESSION_DIR) == ''
+        silent call mkdir(g:SESSION_DIR, "p")
+    endif
+
+    if finddir(&undodir) == ''
+        silent call mkdir(&undodir, "p")
+    endif
+
+" Vundle
+
+    filetype off                   " required!
+
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+
+    Bundle 'gmarik/vundle'
+    "for python
+    Bundle 'davidhalter/jedi-vim'
+    "colors
+    Bundle 'rainux/vim-desert-warm-256'
+    Bundle 'vim-scripts/candycode.vim'
+    Bundle 'jonathanfilip/vim-lucius'
+    "syntax
+    Bundle 'hdima/python-syntax'
+
+    Bundle 'tpope/vim-surround'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'vim-scripts/python_match.vim'
+    Bundle 'tmhedberg/matchit'
+    Bundle 'tmhedberg/SimpylFold'
+
+    filetype plugin indent on 
+    syntax on
+endif
+
 
 let mapleader=","
 
-syntax enable
 set t_Co=256
 set background=dark
 "set background=light
 colorscheme lucius
+"hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+hi MatchParen cterm=NONE ctermbg=244 ctermfg=NONE 
 
 let python_highlight_all = 1
 
@@ -48,14 +85,56 @@ set statusline+=%=                           " right align remainder
 set statusline+=%-14(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
 
-" Search as you type.
-set incsearch
+" Search options
+set hlsearch " Highlight search results
+set ignorecase " Ignore case in search patterns
+set smartcase " Override the 'ignorecase' option if the search pattern contains upper case characters
+set incsearch " While typing a search command, show where the pattern
 
-" Ignore case when searching.
-set ignorecase
+" Matching characters
+set showmatch " Show matching brackets
+set matchpairs+=<:> " Make < and > match as well
 
 " Show editing mode
 set showmode
 
 " Enable CursorLine
 set cursorline
+
+" Switch folding in current line
+let g:SimpylFold_docstring_preview = 1
+noremap <space> za
+if has('folding')
+    set foldmethod=indent " Fold on marker
+    set foldlevel=999 " High default so folds are shown to start
+endif
+
+if has("autocmd")
+
+    augroup vimrc
+    au!
+
+        " Highlight insert mode
+"        au InsertEnter * set cursorline
+"        au InsertLeave * set nocursorline
+
+        " New file templates
+        au BufNewFile * silent! call fun#load_template()
+
+        " Autosave last session
+        if has('mksession')
+            au VimLeavePre * exe "mks! " g:SESSION_DIR.'/last.session'
+        endif
+
+        " Save current open file when window focus is lost
+        au FocusLost * if &modifiable && &modified | write | endif
+
+
+        au BufNewFile,BufRead *.json setf javascript
+        au BufNewFile,BufRead *.py setl colorcolumn=80
+
+    augroup END
+
+endif
+
+let s:loaded_my_vimrc = 1
