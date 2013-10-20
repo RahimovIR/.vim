@@ -39,7 +39,8 @@ jedi:
 #### Или одним списком для удобства:
 
     git clone https://github.com/RahimovIR/.vim.git ~/vim.git
-    cd ~/vim.git && git submodule init && git submodule update
+    cd ~/vim.git && mkdir bundle
+    git clone https://github.com/gmarik/vundle.git bundle/vundle
     ln -s ~/vim.git ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
     vim
