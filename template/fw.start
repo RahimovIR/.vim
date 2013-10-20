@@ -1,0 +1,45 @@
+#!/bin/bash -xe
+
+#Включаем модули iptables
+# modprobe ip_gre
+# modprobe ip_nat_pptp
+# modprobe ip_conntrack_ftp
+# modprobe ip_nat_ftp
+
+IPT="/sbin/iptables"
+INET_IF=eth1
+LOCAL_IF=eth0
+LOCAL_NET=192.168.0.0/24
+LOCAL_IP=192.168.0.1
+
+#Сбрасываем текущие настройки iptables
+$IPT -F
+$IPT -t nat -F
+
+#Разрешение на трафик через loopback адаптер
+$IPT -A INPUT -i lo -j ACCEPT
+
+#Разрешение пакетам создающим новые tcp и udp соединения
+$IPT -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+#Открываем необходимые порты
+$IPT -A INPUT -p tcp --dport ssh -j ACCEPT
+$IPT -A INPUT -p udp -i $LOCAL_IF -s $LOCAL_NET --dport 53 -j ACCEPT
+$IPT -A INPUT -p tcp -i $LOCAL_IF -s $LOCAL_NET --dport 53 -j ACCEPT
+$IPT -A INPUT -p tcp -i $LOCAL_IF -s $LOCAL_NET --dport 3128 -j ACCEPT
+$IPT -A INPUT -p tcp -i $LOCAL_IF -s $LOCAL_NET --dport 80 -j ACCEPT
+$IPT -A INPUT -p icmp -i $LOCAL_IF -s $LOCAL_NET -j ACCEPT
+#$IPT -A INPUT -i $LOCAL_IF -s 192.168.0.10 -j ACCEPT
+
+#Политики маршрутизации по умолчанию
+$IPT -P INPUT DROP
+$IPT -P FORWARD DROP
+$IPT -P OUTPUT ACCEPT
+
+#rdp redirect
+#$IPT -t nat -A PREROUTING -p tcp -i $INET_IF --dport 13389 -j DNAT --to-destination 192.168.0.10:3389
+
+#pptp redirect
+#$IPT -t nat -A PREROUTING -p tcp -i $INET_IF --dport 1723 -j DNAT --to-destination 192.168.0.10
+
+#access all to inet
+$IPT -t nat -A POSTROUTING  -s $LOCAL_NET ! -d $LOCAL_NET -j MASQUERADE

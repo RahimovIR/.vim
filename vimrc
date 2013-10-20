@@ -1,4 +1,5 @@
-if !exists('s:loaded_my_vimrc') " don't reset twice on reloading
+"{{{
+if !exists('s:loaded_my_vimrc') " don't reset twice on reloading 
 
     set nocompatible " enable vim features
 
@@ -13,7 +14,7 @@ if !exists('s:loaded_my_vimrc') " don't reset twice on reloading
         set undofile " enable persistent undo
     endif
 
-" Create system vim dirs
+    " Create system vim dirs
     if finddir(&backupdir) == ''
         silent call mkdir(&backupdir, "p")
     endif
@@ -26,9 +27,9 @@ if !exists('s:loaded_my_vimrc') " don't reset twice on reloading
         silent call mkdir(&undodir, "p")
     endif
 
-" Vundle
+    " Vundle
 
-    filetype off                   " required!
+    filetype off " required!
 
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
@@ -48,22 +49,30 @@ if !exists('s:loaded_my_vimrc') " don't reset twice on reloading
     Bundle 'vim-scripts/python_match.vim'
     Bundle 'tmhedberg/matchit'
     Bundle 'tmhedberg/SimpylFold'
+    Bundle 'SirVer/ultisnips'
+    Bundle 'tpope/vim-commentary'
+    Bundle 'scrooloose/syntastic'
 
     filetype plugin indent on 
     syntax on
-endif
+endif 
+" }}}
 
 
 let mapleader=","
+set number
 
 set t_Co=256
 set background=dark
 "set background=light
 colorscheme lucius
 "hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-hi MatchParen cterm=NONE ctermbg=244 ctermfg=NONE 
+hi MatchParen cterm=NONE ctermbg=234 ctermfg=NONE 
 
 let python_highlight_all = 1
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+let g:UltiSnipsEditSplit='vertical'
 
 " Tabs should be converted to a group of 4 spaces.
 " This is the official Python convention
@@ -101,25 +110,12 @@ set showmode
 " Enable CursorLine
 set cursorline
 
-" Switch folding in current line
-let g:SimpylFold_docstring_preview = 1
-noremap <space> za
-if has('folding')
-    set foldmethod=indent " Fold on marker
-    set foldlevel=999 " High default so folds are shown to start
-endif
-
 if has("autocmd")
 
     augroup vimrc
     au!
 
-        " Highlight insert mode
-"        au InsertEnter * set cursorline
-"        au InsertLeave * set nocursorline
-
-        " New file templates
-        au BufNewFile * silent! call fun#load_template()
+        au! BufNewFile /etc/fw.start silent! 0r ~/.vim/template/fw.start
 
         " Autosave last session
         if has('mksession')
@@ -133,8 +129,13 @@ if has("autocmd")
         au BufNewFile,BufRead *.json setf javascript
         au BufNewFile,BufRead *.py setl colorcolumn=80
 
+        autocmd FileType vim setlocal foldmethod=marker
+
     augroup END
 
 endif
+
+noremap <space> za
+let g:SimpylFold_docstring_preview = 1
 
 let s:loaded_my_vimrc = 1
