@@ -24,14 +24,17 @@ jedi:
 
     git clone https://github.com/RahimovIR/.vim.git ~/vim.git
 
-####2. Перейти в папку vim.git обновить модули:
+####2. Перейти в папку vim.git создать папку bundle и установить vundle
 
-    cd ~/vim.git && git submodule init && git submodule update
+    cd ~/vim.git && mkdir bundle
+    git clone https://github.com/gmarik/vundle.git bundle/vundle
 
 ####3. Создать ссылки на .vim и .vimrc:
 
     ln -s ~/vim.git ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
+
+####4. Установить плагины, для этого запустить vim и выполнить :BundleInstall
 
 #### Или одним списком для удобства:
 
@@ -39,3 +42,4 @@ jedi:
     cd ~/vim.git && git submodule init && git submodule update
     ln -s ~/vim.git ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
+    vim

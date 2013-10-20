@@ -65,7 +65,7 @@ set number
 set t_Co=256
 set background=dark
 "set background=light
-colorscheme lucius
+silent! colorscheme lucius
 "hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 hi MatchParen cterm=NONE ctermbg=234 ctermfg=NONE 
 
