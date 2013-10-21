@@ -40,7 +40,7 @@ jedi:
 
 #### Одним списком для ubuntu:
 
-    apt-get install -y git
+    sudo apt-get install -y git
     git clone https://github.com/RahimovIR/.vim.git ~/vim.git
     cd ~/vim.git && mkdir bundle
     git clone https://github.com/gmarik/vundle.git bundle/vundle
@@ -48,3 +48,6 @@ jedi:
     ln -s ~/.vim/vimrc ~/.vimrc
     vim -c BundleInstall -c qa
 
+### Shortlink for install.sh:
+
+    http://git.io/install.sh
