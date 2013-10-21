@@ -38,7 +38,7 @@ jedi:
 
 #### Или одним списком для удобства:
 
-    apt-get install git
+    apt-get install -y git
     
     git clone https://github.com/RahimovIR/.vim.git ~/vim.git
     cd ~/vim.git && mkdir bundle
