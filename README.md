@@ -34,12 +34,13 @@ jedi:
     ln -s ~/vim.git ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
 
-####4. Установить плагины, для этого запустить vim и выполнить :BundleInstall
+####4. Установить плагины, для этого запустить vim и выполнить 
+
+    :BundleInstall
 
 #### Или одним списком для удобства:
 
     apt-get install -y git
-    
     git clone https://github.com/RahimovIR/.vim.git ~/vim.git
     cd ~/vim.git && mkdir bundle
     git clone https://github.com/gmarik/vundle.git bundle/vundle
