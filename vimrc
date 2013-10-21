@@ -52,6 +52,8 @@ if !exists('s:loaded_my_vimrc') " don't reset twice on reloading
     Bundle 'SirVer/ultisnips'
     Bundle 'tpope/vim-commentary'
     Bundle 'scrooloose/syntastic'
+    Bundle 'fholgado/minibufexpl.vim'
+    Bundle 'godlygeek/csapprox'
 
     filetype plugin indent on 
     syntax on
@@ -64,7 +66,7 @@ set number
 
 set t_Co=256
 set background=dark
-"set background=light
+" set background=light
 silent! colorscheme lucius
 "hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 hi MatchParen cterm=NONE ctermbg=234 ctermfg=NONE 
@@ -110,6 +112,20 @@ set showmode
 " Enable CursorLine
 set cursorline
 
+noremap <space> za
+let g:SimpylFold_docstring_preview = 1
+
+
+"
+hi MBENormal               ctermfg=251  ctermbg=fg  guifg=#808080   guibg=fg
+hi MBEChanged              ctermfg=32   ctermbg=fg  guifg=#CD5907   guibg=fg
+hi MBEVisibleNormal        ctermfg=132  ctermbg=fg  guifg=#5DC2D6   guibg=fg
+hi MBEVisibleChanged       ctermfg=232  ctermbg=fg  guifg=#F1266F   guibg=fg
+hi MBEVisibleActiveNormal  ctermfg=70   ctermbg=fg  guifg=#A6DB29   guibg=fg
+hi MBEVisibleActiveChanged ctermfg=230  ctermbg=fg  guifg=#F1266F   guibg=fg
+
+set noautowrite
+
 if has("autocmd")
 
     augroup vimrc
@@ -122,10 +138,6 @@ if has("autocmd")
             au VimLeavePre * exe "mks! " g:SESSION_DIR.'/last.session'
         endif
 
-        " Save current open file when window focus is lost
-        au FocusLost * if &modifiable && &modified | write | endif
-
-
         au BufNewFile,BufRead *.json setf javascript
         au BufNewFile,BufRead *.py setl colorcolumn=80
 
@@ -134,8 +146,5 @@ if has("autocmd")
     augroup END
 
 endif
-
-noremap <space> za
-let g:SimpylFold_docstring_preview = 1
 
 let s:loaded_my_vimrc = 1
