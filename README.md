@@ -34,9 +34,9 @@ jedi:
     ln -s ~/vim.git ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
 
-####4. Установить плагины, для этого запустить vim и выполнить 
+####4. Установить плагины, для этого запустить vim:
 
-    :BundleInstall
+    vim -c BundleInstall -c qa
 
 #### Одним списком для ubuntu:
 
