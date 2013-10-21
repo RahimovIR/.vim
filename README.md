@@ -19,6 +19,7 @@ jedi:
     sudo pip install jedi
 
 Для корректной работе в tmux необходимо прописать в файле /etc/tmux.conf:
+
     set -g terminal-overrides 'xterm:colors=256'
 
 ##Установка
