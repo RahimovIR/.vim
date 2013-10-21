@@ -2,7 +2,7 @@
 
 cd ~
 sudo apt-get install -y git
-git clone https://github.com/RahimovIR/.vim.git ~/vim.git
+git clone git@github.com:RahimovIR/.vim.git
 cd ~/vim.git && mkdir bundle
 git clone https://github.com/gmarik/vundle.git bundle/vundle
 ln -s ~/vim.git ~/.vim
