@@ -38,7 +38,7 @@ jedi:
 
     :BundleInstall
 
-#### Или одним списком для удобства:
+#### Одним списком для ubuntu:
 
     apt-get install -y git
     git clone https://github.com/RahimovIR/.vim.git ~/vim.git
@@ -46,4 +46,5 @@ jedi:
     git clone https://github.com/gmarik/vundle.git bundle/vundle
     ln -s ~/vim.git ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
-    vim
+    vim -c BundleInstall -c qa
+
