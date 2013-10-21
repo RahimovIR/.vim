@@ -64,9 +64,6 @@ endif
 let mapleader=","
 set number
 
-if match($TERM, "screen")!=-1
-    set term=screen-256color
-endif
 set t_Co=256
 set background=dark
 " set background=light
