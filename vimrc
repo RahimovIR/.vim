@@ -1,4 +1,3 @@
-"{{{
 if !exists('s:loaded_my_vimrc') " don't reset twice on reloading 
 
     set nocompatible " enable vim features
@@ -36,7 +35,8 @@ if !exists('s:loaded_my_vimrc') " don't reset twice on reloading
 
     Bundle 'gmarik/vundle'
     "for python
-    Bundle 'davidhalter/jedi-vim'
+    " Bundle 'davidhalter/jedi-vim'
+    Bundle 'klen/python-mode'
     "colors
     Bundle 'rainux/vim-desert-warm-256'
     Bundle 'vim-scripts/candycode.vim'
@@ -46,19 +46,26 @@ if !exists('s:loaded_my_vimrc') " don't reset twice on reloading
 
     Bundle 'tpope/vim-surround'
     Bundle 'tpope/vim-repeat'
-    Bundle 'vim-scripts/python_match.vim'
     Bundle 'tmhedberg/matchit'
     Bundle 'tmhedberg/SimpylFold'
     Bundle 'SirVer/ultisnips'
+    Bundle 'honza/vim-snippets'
     Bundle 'tpope/vim-commentary'
     Bundle 'scrooloose/syntastic'
-    Bundle 'fholgado/minibufexpl.vim'
+    Bundle 'sandeepcr529/Buffet.vim'
     Bundle 'godlygeek/csapprox'
+    Bundle 'scrooloose/nerdtree'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'yegappan/mru'
+    Bundle 'tpope/vim-fugitive'
 
     filetype plugin indent on 
     syntax on
 endif 
-" }}}
+
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 
 let mapleader=","
@@ -73,8 +80,19 @@ hi MatchParen cterm=NONE ctermbg=234 ctermfg=NONE
 
 let python_highlight_all = 1
 
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
 let g:UltiSnipsEditSplit='vertical'
+let g:UltiSnipsExpandTrigger="<tab>"
+
+let NERDTreeIgnore = ['\.pyc$']
+
+map <F2> :Bufferlist<CR>
+map <F3> :NERDTreeToggle<CR>
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v[\/]\.(git|hg|svn)$
+    \ |migrations', 
+    \ 'file': '\v\.(pyc|zip)$'
+    \ }
 
 " Tabs should be converted to a group of 4 spaces.
 " This is the official Python convention
@@ -133,11 +151,6 @@ if has("autocmd")
 
         au! BufNewFile /etc/fw.start silent! 0r ~/.vim/template/fw.start
 
-        " Autosave last session
-        if has('mksession')
-            au VimLeavePre * exe "mks! " g:SESSION_DIR.'/last.session'
-        endif
-
         au BufNewFile,BufRead *.json setf javascript
         au BufNewFile,BufRead *.py setl colorcolumn=80
 
@@ -148,3 +161,8 @@ if has("autocmd")
 endif
 
 let s:loaded_my_vimrc = 1
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
